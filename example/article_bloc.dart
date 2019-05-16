@@ -1,46 +1,3 @@
-# updater_queue_bloc
-
-A simple BLoC base class that runs `async` updater functions sequentially.
-
-This simplifies state management by ensuring that only a single updater function is running at any time.
-
-Updaters can emit multiple new state values, for example a data loading BLoC can emit a `LoadingState` initially,
-then `await` the completion of an HTTP request, and finally emit a `LoadedState` with the received data.
-
-## Example usage
-
-```dart
-import 'package:updater_queue_bloc/updater_queue_bloc.dart';
-
-class CounterBloc extends UpdaterQueue<int> {
-  CounterBloc() : super(0);
-
-  Future<void> increment() async {
-    await map((count) => count + 1);
-  }
-
-  Future<void> addNTimes(int n) async {
-    await expand(
-      (count) async* {
-        for (var i = 0; i < n; i++) {
-          yield count + n;
-        }
-      },
-    );
-  }
-}
-```
-
-## State Type
-
-The state type is not always a simple primitive like `int` in the example above.
-
-Let's image we have a BLoC backing a news article widget, which handles navigating to other articles by invoking a `openArticle` method.
-
-For this case a shared abstract base state class (`ArticleState` below) is used so that the BLoC can have a single emitted type,
-without introduction optional or nullable fields for the individual sub-states.
-
-```dart
 import 'dart:convert';
 import 'dart:io';
 
@@ -96,4 +53,3 @@ class ArticlePageBloc extends UpdaterQueue<ArticlePageState> {
     );
   }
 }
-```

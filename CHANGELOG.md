@@ -1,3 +1,7 @@
+## [1.0.1] - 2019-05-16
+
+- Add more elaborate example to README.
+
 ## [1.0.0] - 2019-05-16
 
 - Bump version. There is really nothing more to this bloc.
