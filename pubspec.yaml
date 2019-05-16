@@ -1,6 +1,6 @@
 name: updater_queue_bloc
 description: An async state queue implementation, to be used a the basis for a bloc.
-version: 1.0.0
+version: 1.0.1
 author: Timm Preetz <timm@preetz.us>
 homepage: https://github.com/tp/updater_queue_bloc
 
@@ -13,6 +13,7 @@ dependencies:
 
 dev_dependencies:
   pedantic: ">=1.4.0"
+  meta: any
 
   flutter_test:
     sdk: flutter
